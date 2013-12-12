@@ -1,0 +1,26 @@
+<h1>New campaign</h1>
+
+<% if @contacts_list.count <= 0 or @contents_list.count <= 0 %>
+  <% if @contacts_list.count <= 0 %>
+    There is no contacts list. Contacts list is required for creating a campaign.
+    <ul>
+      <li>
+        Create a new <%= link_to 'Contacts list', new_contact_path, :style => "font-size: 12px;" %>
+      </li>
+    </ul>
+  <% end %>
+  <br />
+  <% if @contents_list.count <= 0 %>
+    There is no content. Content is required for creating a campaign to send out emails with.
+    <ul>
+      <li>
+        Create new <%= link_to 'Content', new_content_path, :style => "font-size: 12px;" %>
+      </li>
+    </ul>
+  <% end %>
+
+
+<% else %>
+  <%= render 'form' %>
+<% end %>
+

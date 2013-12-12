@@ -1,0 +1,55 @@
+<h1>
+  Subscriber detail
+</h1>
+<% @status = {'-1' => "Deleted", '0' => 'Inactive', '1' => 'Active'} %>
+<%= form_for('subscribers') do |f| %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= @subscriber.email %>
+  </div>
+
+  <div class="field">
+  <%= f.label :first_name %> 
+  <%= @subscriber.first_name %>
+  </div>
+
+  <div class="field">
+  <%= f.label :last_name %> 
+  <%= @subscriber.last_name %>
+  </div>
+
+  <div class="field">
+  <%= f.label :address %> 
+  <%= @subscriber.address %>
+  </div>
+
+  <div class="field">
+  <%= f.label :city %> 
+  <%= @subscriber.city %>
+  </div>
+
+  <div class="field">
+  <%= f.label :state %> 
+  <%= @subscriber.state %>
+  </div>
+
+  <div class="field">
+  <%= f.label :zip %> 
+  <%= @subscriber.zip %>
+  </div>
+
+  <div class="field">
+  <%= f.label :country %> 
+  <%= @subscriber.country %>
+  </div>
+
+  <div class="field">
+  <%= f.label :status %> 
+  <%= @status[@subscriber.status.to_s] %>
+  </div>
+  
+  <div class="field">
+  <%=link_to 'Edit', edit_subscriber_path(@subscriber) %> |
+  <%= link_to 'Back', subscribers_path %>
+  </div>
+<% end %>

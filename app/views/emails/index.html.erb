@@ -1,0 +1,15 @@
+
+<%=raw jqgrid("Listing emails", "emails", "/emails", 
+[ 
+   
+  { :field => "email", :label => "email" }, 
+  { :field => "last_name", :label => "last_name" }, 
+   
+  { :field => "first_name", :label => "first_name" }, 
+   
+  { :field => "id", :label => "id" }, 
+   
+  { :field => "updated_at", :label => "updated_at" } 
+   
+  ] , {:autowidth=>true} 
+  ) %>

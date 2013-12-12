@@ -1,0 +1,63 @@
+<h1>
+  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+      <td>
+        <span class="heading">
+          Contacts lists
+          |
+          <%= link_to 'New Contacts list', new_contact_path, :style => "font-size: 10px;" %>
+        </span>
+          <br />  
+          <span class="heading2"><b><%= @total %></b> contact list(s)</span>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </table>
+</h1>
+
+<span class="tip">Tip: Contact lists allow to store subscribers</span>
+<!--
+<br />
+<div id="contacts">
+  <% if @contacts.empty? %>
+    <h3>There is no contact list currently available</h3>
+    <ul>
+      <li>You can create a <%= link_to 'New contact list', new_contact_path, :style => "font-size: 12px" %></li>
+    </ul>
+  <% else %>
+
+
+  <table width="1200">
+    <tr class="th1">
+      <th class="td1">Contacts list name</th>
+      <th class="td1">Description</th>
+      <th class="td">Last Updated date</th>
+      <th class="td1">Status</th>
+      <th class="td1">User</th>
+    </tr>
+
+    <%= render @contacts %>
+
+  </table>
+
+  <% end %>
+
+</div>
+
+-->
+<%=raw jqgrid("<span class='theading'>Contacts lists</span>", "contacts", "/contacts", 
+[ 
+   
+  { :field => "name", :label => "Name", :width => "300" }, 
+  { :field => "description", :label => "Description", :width => "450"}, 
+   
+  { :field => "updated_at", :label => "Last update date", :width => "170", :style => "font-size: 10px" }, 
+   
+  { :field => "status_string", :label => "Status" }, 
+   
+  { :field => "user_id", :label => "user_id" } 
+   
+  ] , {:autowidth=>true} 
+  ) %>
+

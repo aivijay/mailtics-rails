@@ -1,0 +1,73 @@
+RuleCategories model
+
+rails generate model RuleCategory name:string description:text
+rails generate scaffold RuleCategory name:string description:text --skip-migration
+
+Rule
+
+rails generate model Rule rule_name:string rule_text:text rule_description:text rule_condition:text rule_order:integer desired_result:text project_id:integer rule_category_id:integer rule_field:text rule_condition_id:integer value:text
+rails generate scaffold Rule rule_name:string rule_text:text rule_description:text rule_condition:text rule_order:integer desired_result:text project_id:integer rule_category_id:integer rule_field:text rule_condition_id:integer value:text --skip-migration
+
+Projects
+
+rails generate model Project name:string description:text
+rails generate scaffold Project name:string description:text --skip-migration
+
+RuleConditions
+
+rails generate model RuleCondition condition:string description:text
+rails generate scaffold RuleCondition condition:string description:text --skip-migration
+
+Add column
+rails generate migration add_case_status_to_orcc_results case_status:string
+
+Patients table
+
+rails generate model Patient mrn:string first_name:string last_name:string account:string dob:datetime ssn:string data_source:string
+
+add column for rule status (ACTIVE/INACTIVE)
+
+rails generate migration add_status_to_rules status:string
+
+
+result rules
+
+rails generate model ResultRule orcc_result_id:integer result:string result_descr:text
+
+# change column type/update column
+rails generate migration change_data_type_for_curprice
+
+rails generate migration change_data_type_for_campaigns_status
+
+Mailing list
+------------
+rails generate model MailingList name:string description:text data:text status:integer 
+
+Comment
+-------
+rails generate model comment campaign_id:integer name:string body:text
+
+Remove column
+-------------
+rails generate migration RemoveMailingListFromSubscriber mailing_list_id:integer
+
+
+rails generate migration add_sex_to_subscribers sex:string
+
+rails generate migration add_date_of_birth_to_subscribers dob:datetime
+
+Create relation between two tables using a new intermediate table
+
+rails generate migration create_contacts_subscribers
+
+
+Content table
+-------------
+
+rails generate scaffold Content name:string content_html:text content_text:text status:integer
+
+
+rails generate scaffold Scheduler campaign_id:integer contact_id:integer content_id:integer supress_by:integer priority:string schedule_time:datetime status:integer user_id:integer
+
+
+rails generate migration add_subscriber_key_to_subscribers subscriber_key

@@ -1,0 +1,103 @@
+
+<%= form_for(@campaign) do |f| %>
+  <% if @campaign.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
+
+      <ul>
+      <% @campaign.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :campaign_name %><br />
+    <%= f.text_field :name, :style => "width: 1015px;" %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :style => "width: 1015px; height: 50px;" %>
+  </div>
+  <!--
+  <div class="field">
+    <%= f.label "Categories" %><br />
+    <% for category in Category.all %>
+      <%= check_box_tag 'campaign[category_ids][]', category.id, @campaign.category_ids.include?(category.id), :id => dom_id(category) %>
+      <%= label_tag dom_id(category), category.name, :class => "check_box_label" %>
+    <% end %>
+  </div>
+  -->
+  <div class="field">
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject, :style => "width: 1015px;" %>
+  </div>
+  <div class="field">
+    <!--<%= f.label :content_html %><br />-->
+    <%= f.text_area :content_html, :style => "width: 1015px; height: 120px;" %>
+  </div>
+  <div class="field">
+    <%= f.label :content_text %><br />
+    <%= f.text_area :content_text, :style => "width: 1015px; height: 120px;" %>
+  </div>
+  <div class="field">
+    <%= f.label :from_name %><br />
+    <%= f.text_field :from_name %>
+  </div>
+  <div class="field">
+    <%= f.label :from_email %><br />
+    <%= f.text_field :from_email %>
+  </div>
+  <!--
+  <div class="field">
+    <%= f.label :attachment %><br />
+    <%= f.text_field :attachment %>
+  </div>
+  -->
+  <div class="field">
+    <%= f.label :content_type %><br />
+    <!--<%= f.text_field :content_type %>-->
+    <table border="0" cellpadding="0" cellspacing="0" width="280">
+      <tr>
+        <td width="70">
+          <%= f.radio_button :content_type, "TEXT" %>Text 
+        </td>
+        <td width="70">
+          <%= f.radio_button :content_type, "HTML" %>HTML
+        </td>
+        <td>
+          <%= f.radio_button :content_type, "HTMLTEXT" %>HTML and Text
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <!--<%= f.text_field :status %>-->
+
+    <!--
+    <% [ 'plain', 'desert', 'green', 'corporate', 'funky' ].each do |theme| %>
+      <br><%= radio_button_tag 'theme', theme, @theme == theme %>
+      <%= theme.humanize %>
+    <% end %>
+    -->
+
+    <table border="0" cellpadding="0" cellspacing="0" width="280">
+      <tr>
+        <td width="70">
+          <%= f.radio_button :status, 1 %>Active
+        </td>
+        <td width="70">
+          <%= f.radio_button :status, 0 %>Inactive
+        </td>
+        <td>
+          <%= f.radio_button :status, -1 %>Deleted
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="actions">
+    <%= submit_or_cancel(f) %>
+  </div>
+<% end %>

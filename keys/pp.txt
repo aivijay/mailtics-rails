@@ -1,0 +1,6 @@
+PayPal will use your public certificate to decipher the encrypted content of your website buttons. You may add up to 6 different certificates.
+
+  Cert ID Certifying Authority  Expiration Date
+    G2K2G7HM3SQML /C=US/ST=TX/L=Eastland/O=Safe/OU=Dev/CN=Vijaykumar/emailAddress=aivijay@gmail.com Apr 30, 2012 02:12:28 PDT
+
+    Cert ID = G2K2G7HM3SQML

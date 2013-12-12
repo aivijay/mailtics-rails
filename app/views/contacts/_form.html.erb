@@ -1,0 +1,49 @@
+<%= form_for(@contact) do |f| %>
+  <% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+      <% @contact.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <!--
+  <div class="field">
+    <%= f.label :data %><br />
+    <%= f.text_area :data %>
+  </div>
+  -->
+  <div class="field">
+    <%= f.label :status %><br />
+    <!--<%= f.text_field :status %>-->
+    <table border="0" cellpadding="0" cellspacing="0" width="240">
+      <tr>
+        <td width="80">
+          <%= f.radio_button :status, 1 %>Active
+        </td>
+        <td width="80">
+          <%= f.radio_button :status, 0 %>Inactive
+        </td>
+        <td>
+          <%= f.radio_button :status, -1 %>Deleted
+        </td>
+      </tr>
+    </table>
+
+  </div>
+  <div class="actions">
+    <%= submit_or_cancel(f, 'Cancel', params[:action].capitalize + ' Contact list') %>
+  </div>
+<% end %>

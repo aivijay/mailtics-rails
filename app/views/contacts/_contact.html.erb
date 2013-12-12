@@ -1,0 +1,31 @@
+<%= div_for contact do %>
+
+  <% @status = {'0' => 'Inactive', '1' => 'Active', '-1' => 'Deleted'} %>
+  <% user = User.find(contact.user_id) %>
+  <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+    <td width="180" valign="top">
+  <h3>
+    <%= link_to contact.name, contact %>
+    <% if contact.owned_by? current_user %>
+      <span class='actions'>
+        <%= link_to "Subscribers", contact_subscriber_path(contact) %>
+        <%= link_to "Edit", edit_contact_path(contact) %>
+        <%= link_to "Delete", contact, :confirm => "Are you sure?", :method => :delete %>
+      </span>
+    <% end %>
+  </h3>
+    </td>
+    <td width="500">
+      <%= contact.description %>
+    </td>
+    <td>
+      <%= contact.updated_at %>
+    </td>
+    <td>
+      <b><%= @status[contact.status.to_s] %></b>
+    </td>
+    <td width="180">
+      <%= user.profile.name %>
+    </td>
+  </tr>
+<% end %>

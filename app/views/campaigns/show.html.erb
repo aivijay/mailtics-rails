@@ -1,0 +1,47 @@
+<h1>
+  Campaign detail
+</h1>
+
+
+<% @status = {'-1' => "Deleted", '0' => 'Inactive', '1' => 'Active'} %>
+<%= form_for('subscribers') do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= @campaign.name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= @campaign.description %>
+  </div>
+  <div class="field">
+    <%= f.label :contacts_list %>
+    <%= @campaign.user.contacts.find(@campaign.contact_id).name %>
+  </div>
+  <div class="field">
+    <%= f.label :content %>
+    <%= @campaign.user.contents.find(@campaign.content_id).name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_update_date %>
+    <%= @campaign.updated_at %>
+  </div>
+  <div class="field">
+    <%= f.label :active %>
+    <%= @status[@campaign.status.to_s] %>
+  </div>
+
+<% end %>
+
+<br />
+<%= link_to 'Edit', edit_campaign_path(@contact) %> |
+<%= link_to 'Back', campaigns_path %>
+
+<br />
+<br />
+<h4>Comments and notes</h4>
+<div id="comments">
+  <%= render @campaign.comments %>
+</div>
+
+<%= link_to "new comment", new_campaign_comment_path(@campaign, :format => :js), :remote => true, :id => 'new_comment_link' %>
+

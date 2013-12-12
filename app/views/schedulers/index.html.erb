@@ -1,0 +1,71 @@
+<h1>
+  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+      <td>
+        <span class="heading">
+          Scheduled campaigns 
+          |
+          <%= link_to 'New Schedule', new_scheduler_path, :style => "font-family: arial; font-size: 10px;" %>
+        </span>
+          <br />  
+          <span class="heading2"><b><%= @total %></b> schedule(s)</span>
+      </td>
+      <td>
+      <!--
+        <div style="text-align: right">
+          <span style="font-size: 10px;"><%= will_paginate @schedulers %></span>
+          <span style="font-size: 10px;"><%= simple_format( page_entries_info @schedulers) %></span>
+        </div>
+      -->
+      </td>
+    </tr>
+  </table>
+</h1>
+<span class="tip"><b>Tip:</b> Scheduled campaigns till date ordered by latest</span>
+
+
+<!--
+<table width="1200">
+  <tr class="th1">
+    <th class="td1">Campaign name</th>
+
+-->
+
+    <!--
+    <th class="td1">Contacts list</th>
+    <th class="td1">Content</th>
+    <th class="td1">Supress by</th>
+    -->
+
+<!--
+    <th class="td1">Priority</th>
+    <th class="td">Schedule time</th>
+    <th class="td1">Status</th>
+    <th class="td1">User</th>
+-->
+    <!--
+    <th></th>
+    <th></th>
+    <th></th>
+    -->
+
+<!--
+  </tr>
+
+  have #render @schedulers here 
+
+</table>
+-->
+<br />
+
+<%=raw jqgrid("<span class='theading'>Scheduler</span>", "schedulers", "/schedulers", 
+[ 
+   
+  { :field => "campaign_name", :label => "Campaign name", :width => "450" }, 
+  { :field => "schedule_time", :label => "Scheduled Date/Time", :width => "170" }, 
+  { :field => "priority", :label => "Priority", :width => "110" }, 
+  { :field => "status_string", :label => "Status", :width => "80"}, 
+  { :field => "updated_at", :label => "Last update date", :width => "170"}, 
+  { :field => "created_user", :label => "User", :width => "170"}, 
+  ] , {:autowidth=>true} 
+  ) %>

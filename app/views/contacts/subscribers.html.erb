@@ -1,0 +1,33 @@
+<h1>  
+  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+      <td valign="top">
+        <span class="heading">
+          Subscribers for contact list: <span style="color: blue;"><%= @cl_name %></span> 
+          <br />  
+          <span class="heading2"><b><%= @total %></b> subscriber(s)</span>
+        </span>
+      </td>
+      <td>
+        <div style="text-align: right">
+          <span style="font-size: 10px;"><%= will_paginate @subscribers %></span>
+          <span style="font-size: 10px;"><%= simple_format( page_entries_info @subscribers) %></span>
+        </div>
+      </td>
+    </tr>
+  </table>
+</h1>
+<span class="tip">Tip: Subscriber is a contacts individual information</span>
+<br />
+
+<% if @subscribers.empty? %>
+  <h3>No subscribers in contacts list</h3>
+  <ul>
+    <li>You can <%= link_to 'Upload subscribers', upload_subscriber_path, :style => "font-size: 12px;" %></li>
+    <!--<li>You can <%= link_to 'New subscriber', new_subscriber_path, :style => "font-size: 12px;" %></li>-->
+  </ul>
+
+<% else %>
+  <%= render @subscribers %>
+<% end %>
+

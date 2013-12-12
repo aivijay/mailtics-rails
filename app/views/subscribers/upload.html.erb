@@ -1,0 +1,65 @@
+<h1>Upload subscribers</h1>
+
+<% if @contact_lists_count <= 0 %>
+  <h3>No contact list</h3>
+  <ul>
+    <li>There are no contact lists, please create a <%= link_to 'new contact list', new_contact_path, :style => "font-size: 12px" %> to upload subscribers</li>
+  </ul>
+<% else %>
+<%= form_for :upload, :html => { :multipart => true } do |f| -%>
+  
+  <table border="0" cellpadding="5" cellspacing="5" align="left">
+    <tr>
+      <td valign="top">
+        <%= f.label :Upload_Subscribers %><br />
+      </td>
+      <td>
+        <table border="0" cellpadding="5" cellspacing="0">
+          <tr>
+            <td>
+              <%= f.file_field :csv %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Select a CSV file with a list of contacts/subscribers to upload.
+              <br />
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td>
+      </td>
+      <td align="top">
+        <div style="height: 3px;"></div>
+        <%= f.submit "Upload", :disable_with => 'Uploading. Please wait...' %>
+        <div style="align: left; height: 55px; border: 0px solid red;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+
+      </td>
+      <td>
+              &nbsp;
+              The following fields are supported for upload:
+              <br />
+              <ul>
+                <li><span style="color: red; font-weight: bold;">Email</span> <span class="help">[required field]</span></li>
+                <li>First Name</li>
+                <li>Last Name</li>
+                <li>Address</li>
+                <li>City</li>
+                <li>State</li>
+                <li>Zip / Postal Code</li>
+                <li>Country</li>
+                <li>Sex</li>
+                <li>Date of Birth</li>
+              </ul>
+
+      </td>
+    </tr>
+  </table>
+<% end -%>
+
+<% end %>

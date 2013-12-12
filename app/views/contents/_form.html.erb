@@ -1,0 +1,73 @@
+<%= javascript_include_tag :ckeditor %>
+
+<%= form_for(@content) do |f| %>
+  <% if @content.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h2>
+
+      <ul>
+      <% @content.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, :style => "width: 1015px;" %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject, :style => "width: 1015px;" %>
+  </div>
+  <div class="field">
+    <%= f.label :content_html %><br />
+    Copy (Ctrl + A, Ctrl + C) paste (Ctrl + V) content which has been designed. You can design the content from scartch using the editor. 
+  </div>
+  <div class="field">
+    <%= f.cktext_area :content_html, :swf_params=>{:assetable_type=>'User', :assetable_id=>current_user.id}, :width => '1186px', :height => '600px' %>
+  </div>
+  <div class="field">
+    <%= f.label :content_text %><br />
+    <%= f.text_area :content_text, :style => "width: 640px; height: 300px;" %>
+    &nbsp;&nbsp;<span class="tip"><b>Tip:</b> Plain text email content. Each line can have a max of 80 characters.</span>
+  </div>
+  <div class="field">
+    <%= f.label :content_type %><br />
+    <!--<%= f.text_field :content_type %>-->
+    <table border="0" cellpadding="0" cellspacing="0" width="280">
+      <tr>
+        <td width="70">
+          <%= f.radio_button :content_type, "TEXT" %>Text 
+        </td>
+        <td width="70">
+          <%= f.radio_button :content_type, "HTML" %>HTML
+        </td>
+        <td>
+          <%= f.radio_button :content_type, "HTMLTEXT" %>HTML and Text
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <!--<%= f.text_field :status %>-->
+    <table border="0" cellpadding="0" cellspacing="0" width="280">
+      <tr>
+        <td width="70">
+          <%= f.radio_button :status, 1 %>Active
+        </td>
+        <td width="70">
+          <%= f.radio_button :status, 0 %>Inactive
+        </td>
+        <td>
+          <%= f.radio_button :status, -1 %>Deleted
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="actions">
+    <%= submit_or_cancel(f) %>
+  </div>
+<% end %>

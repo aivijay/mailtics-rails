@@ -1,0 +1,19 @@
+  <% @status = {'0' => 'scheduled', '1' => 'processing', '2' => 'completed', '-1' => 'error'} %>
+  <% user = User.find(scheduler.user_id) %>
+  <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+    <td width="550"><%= Campaign.find(scheduler.campaign_id).name %></td>
+    <!--
+    <td><%= scheduler.contact_id %></td>
+    <td><%= scheduler.content_id %></td>
+    <td><%= scheduler.supress_by %></td>
+    -->
+    <td><%= scheduler.priority %></td>
+    <td><%= scheduler.schedule_time %></td>
+    <td><b><%= @status[scheduler.status.to_s] %></b></td>
+    <td width="170"><%= user.profile.name %></td>
+    <!--
+    <td><%= link_to 'Show', scheduler %></td>
+    <td><%= link_to 'Edit', edit_scheduler_path(scheduler) %></td>
+    <td><%= link_to 'Destroy', scheduler, :confirm => 'Are you sure?', :method => :delete %></td>
+    -->
+  </tr>

@@ -1,0 +1,95 @@
+<h1>
+  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+      <td valign="top">
+        <span class="heading">Subscribers |
+          <!--<%= link_to 'New subscriber', new_subscriber_path, :style => "font-size: 10px;" %> | -->
+          <%= link_to 'Upload subscribers', upload_subscriber_path, :style => "font-size: 10px;" %> | 
+          <%= link_to 'Export subscribers', new_subscriber_path, :style => "font-size: 10px;" %> 
+          <br />  
+          <table>
+            <tr>
+              <td>
+                <span class="heading2"><b><%= @total %></b> subscriber(s)</span>
+              </td>
+              <td>
+                <%= image_tag "s1.png", :style => "height: 25px" %> 
+              </td>
+              <td>
+                Active
+              </td>
+              <td>
+                <%= image_tag "s2.png", :style => "height: 25px" %> 
+              </td>
+              <td>
+                Undeliverable
+              </td>
+              <td>
+                <%= image_tag "s3.png", :style => "height: 25px" %> 
+              </td>
+              <td>
+                Bounced
+              </td>
+              <td>
+                <%= image_tag "s4.png", :style => "height: 25px" %> 
+              </td>
+              <td>
+                Unsubscribed
+              </td>
+            </tr>
+          </table>
+        </span>
+      </td>
+      <td>
+        <div style="text-align: right">
+          <span style="font-size: 10px;"><%= will_paginate @subscribers %></span>
+          <span style="font-size: 10px;"><%= simple_format( page_entries_info @subscribers) %></span>
+        </div>
+      </td>
+    </tr>
+  </table>
+  
+</h1>
+<span class="tip">Tip: Subscriber is a contacts individual information</span> 
+
+<br />
+
+<div id="subscribers1">
+  <% if @subscribers.empty? %>
+    <h3>There are no subscribers</h3>
+
+    <ul>
+    <% if @contact_lists_count <= 0 %>
+      <li>There are no contact lists, please create a <%= link_to 'new contact list', new_contact_path, :style => "font-size: 12px" %> to upload subscribers</li>
+    <% end %>
+      <li><%= link_to 'Upload', '/subscribers/upload', :style => "font-size: 12px;" %> a list of subscribers into an existing contact list</li>
+    </ul>
+  <% else %>
+
+  <table width="1200">
+    <tr class="th1">
+      <th class="td1">Email</th>
+      <th class="td1">Last name</th>
+      <th class="td1">First name</th>
+      <th class="td1">Subscriber Id</th>
+      <th class="td">Last Updated date</th>
+    </tr>
+
+
+    <% render @subscribers %>
+
+
+  </table>
+  <% end %>
+</div>
+
+<%=raw jqgrid("<span class='theading'>Subscribers</span>", "subscribers", "/subscribers", 
+[ 
+   
+  { :field => "email", :label => "Email", :width => "300" }, 
+  { :field => "last_name", :label => "Last name", :width => "450"}, 
+  { :field => "first_name", :label => "First name", :width => "450"}, 
+  { :field => "id", :label => "Subscriber ID", :width => "450"}, 
+  { :field => "updated_at", :label => "Last update date", :width => "170", :style => "font-size: 10px" }, 
+  ] , {:autowidth=>true} 
+  ) %>

@@ -1,0 +1,26 @@
+<h1>
+  Content detail
+</h1>
+<% @status = {'-1' => "Deleted", '0' => 'Inactive', '1' => 'Active'} %>
+
+<%= form_for('contents') do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= @content.name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :subject %>
+    <%= @content.subject %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= @status[@content.status.to_s] %>
+  </div>
+
+<% end %>
+<br />
+<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Back', contents_path %>

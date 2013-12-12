@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Campaign:</b>
+  <%= @scheduler.campaign_id %>
+</p>
+
+<p>
+  <b>Contact:</b>
+  <%= @scheduler.contact_id %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @scheduler.content_id %>
+</p>
+
+<p>
+  <b>Supress by:</b>
+  <%= @scheduler.supress_by %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%= @scheduler.priority %>
+</p>
+
+<p>
+  <b>Schedule time:</b>
+  <%= @scheduler.schedule_time %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @scheduler.status %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @scheduler.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_scheduler_path(@scheduler) %> |
+<%= link_to 'Back', schedulers_path %>

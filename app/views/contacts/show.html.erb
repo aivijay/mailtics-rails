@@ -1,0 +1,24 @@
+<h1>
+  Contacts list detail
+</h1>
+<% @status = {'-1' => "Deleted", '0' => 'Inactive', '1' => 'Active'} %>
+<%= form_for('subscribers') do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= @contact.name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= @contact.description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= @status[@contact.status.to_s] %>
+  </div>
+
+<% end %>
+<br />
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>

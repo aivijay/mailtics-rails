@@ -1,0 +1,47 @@
+
+<h1>
+  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+      <td>
+        <span class="heading">
+          Content list
+          |
+          <%= link_to 'New Content', new_content_path, :style => "font-size: 10px;" %>
+        </span>
+          <br />  
+          <span class="heading2"><b><%= @total %></b> content(s)</span>
+      </td>
+      <td>
+      <!--
+        <div style="text-align: right">
+          <span style="font-size: 10px;"><%= will_paginate @contents %></span>
+          <span style="font-size: 10px;"><%= simple_format( page_entries_info @contents) %></span>
+        </div>
+       -->
+      </td>
+    </tr>
+  </table>
+</h1>
+<span class="tip"><b>Tip:</b> Content allows to create and store the html / text content which needs to be sent to subscribers.</span>
+<br />
+<div id="contents1">
+  <% if @contents.empty? %>
+    <h3>There is no content currently available</h3>
+    <ul>
+      <li>You can create a <%= link_to 'New content', new_content_path, :style => "font-size: 12px" %></li>
+    </ul>
+  <% else %>
+<!--    <%= render @contents %>-->
+  <% end %>
+</div>
+
+<%=raw jqgrid("<span class='theading'>Contents</span>", "contents", "/contents", 
+[ 
+   
+  { :field => "name", :label => "Name", :width => "330" }, 
+  { :field => "subject", :label => "Subject", :width => "450" }, 
+  { :field => "status_string", :label => "Status", :width => "110"}, 
+  { :field => "updated_at", :label => "Last update date", :width => "170"}, 
+  { :field => "created_user", :label => "User", :width => "170"}, 
+  ] , {:autowidth=>true} 
+  ) %>

@@ -1,0 +1,16 @@
+<%= div_for content do %>
+  <h3>
+    <%= link_to content.name, content %>
+    <% if content.owned_by? current_user %>
+      <span class='actions'>
+        <%= link_to "Edit", edit_content_path(content) %>
+        <%= link_to "Delete", content, :confirm => "Are you sure?", :method => :delete %>
+      </span>
+    <% end %>
+  </h3>
+
+  <b>Subject:</b> <%= content.subject %>
+  <br />
+  <b>Last Updated date:</b> <%= content.updated_at %>
+  <hr />
+<% end %>

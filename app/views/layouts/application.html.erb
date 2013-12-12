@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mailtics</title>
+<!-- Skin CSS file -->
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag 'jquery-1.4.4.min', 'rails', 'application' %>
+  <%= csrf_meta_tag %>
+  <%= jqgrid_javascripts %>
+  <!--<%= jqgrid_stylesheets %>-->
+  <%= jqgrid_stylesheets "redmond"%>
+</head>
+<body>
+
+  <div id="header">
+    <h1><%= link_to "Mailtics", root_path %></h1>
+    <div id="user_bar">
+      <% if logged_in? %>
+         <!--<%= link_to "New Campaign", new_campaign_path %> |-->
+         <%= link_to "Contacts Lists", contacts_path %> |
+         <%= link_to "Subscribers", subscribers_path %> |
+         <%= link_to "Content", contents_path %> |
+         <%= link_to "Campaigns", campaigns_path %> |
+         <%= link_to "Scheduler", new_scheduler_path %> |
+         <%= link_to "Reports", campaigns_path %> |
+         <%= link_to "Account", edit_user_path(current_user) %> |
+         <%= link_to "Logout", logout_path %>
+      <% else %>
+         <%= link_to "Login", login_path %>
+      <% end %>
+    </div>
+  </div>
+  <div id="main">
+    <%= content_tag(:p, notice, :class => 'notice') if notice.present? %>
+    <%= content_tag(:p, alert, :class => 'alert') if alert.present? %>
+    <%= yield %>
+  </div>
+  <div id="footer">
+    Copyright &copy; 2010 <a href="http://mailtics.com">Mailtics</a>
+  </div>
+
+</body>
+</html>
